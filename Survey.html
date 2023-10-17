@@ -1,0 +1,171 @@
+<html>
+<title>Survey form</title>
+<head>
+<style>
+    *{
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0%;
+        padding: 0%;
+}
+body{
+    background-color: rgb(0, 187, 255);
+}
+form{
+    height: 600px;
+    width: 700px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+input{
+    height: 30px;
+}
+.title{
+    color: white;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 40px;
+}
+.buttons{
+    display: flex;
+    width: 300px;
+    height: 50px;
+    justify-content: space-between;
+}
+.gender{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.buttons input{
+    height: 40px;
+    width: 80px;
+    font-size: 15px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: sans-serif;
+    background-color: rgb(0, 187, 255);
+}
+.form-holder{
+    position: absolute;
+    top:14%;
+    left: 30%;
+    box-shadow: rgba(7, 7, 9, 0.2) 0px 7px 29px 0px;
+}
+label{
+    padding-right: 20px;
+}
+.gender label{
+    padding-right: 8px;
+    padding-left: 8px;
+}
+</style>
+</head>
+<body>
+<script src="survey.js"></script>
+<h1 class="title">Customer Survey Form</h1>
+<div class="form-holder">
+    <form id="myform" method="get">
+        <div class="last">
+            <label>First Name</label>
+            <input type="name" placeholder="" name="Firstname">
+        </div>
+        <div class='last'>
+            <label>Last Name </label>
+            <input type="name"  placeholder="" name="Lastname">
+        </div>
+        <div class="last">
+            <label>Date of Birth</label>
+            <input type="name" placeholder="" name="dateofbith">
+        </div>
+        <div class="last">
+            <label>Country</label>
+            <select name='Country'>
+                <option value='India'>India</option>
+                <option value='America'>America</option>
+                <option value='China'>China</option>
+                <option value='Germany'>Germany</option>
+                <option value='Belgium'>Belgium</option>
+                <option value='Bangladesh'>Bangladesh</option>
+                <option value='Canada'>Canada</option>
+            </select>
+        </div>
+        <div class="gender">
+            <label>Gender</label>
+            <label >Male</label>
+             <input type="radio"  name="Gender" >
+             <label >Female</label>
+             <input type="radio"  name="Gender">
+             <label >Other</label>
+             <input type="radio"  name="Gender">
+        </div>
+        <div class="last">
+            <label>Profession</label>
+            <input type="text" placeholder="" name="Profession">
+        </div>
+        <div class="last">
+            <label>Email</label>
+            <input type='email' placeholder="" name="Email">
+        </div>
+        <div class="last">
+            <label > Mobile No</label>
+           <input type="number"  name="Mobilenum">
+        </div >
+        <div class="buttons">
+            <input type="button" onclick="validateForm()" value="submit">
+            <input type="reset">
+        </div>
+    </div>
+</form>
+</div>
+<script>
+function validateForm() {
+    var regName =/^[A-Za-z\s]+$/;
+    let Firstname = document.forms["myform"]["Firstname"].value;
+    let Lastname = document.forms["myform"]["Lastname"].value;
+    let dateofbith = document.forms["myform"]["dateofbith"].value;
+    let Profession = document.forms["myform"]["Profession"].value;
+    let Email = document.forms["myform"]["Email"].value;
+    let Mobilenum = document.forms["myform"]["Mobilenum"].value;
+  if (Firstname == "" || !regName.test(Firstname)) {
+    alert(" Enter Valid FirstName ");
+    return false;
+  }
+  else if(Lastname="" || !regName.test(Lastname)){
+    alert(" Enter Valid LastName");
+    return false;
+  }
+  else if(dateofbith=="")
+  {
+    alert("Date Of Birth must be filled out");
+    return false;
+  }
+  else if(Profession=="" || !regName.test(Profession))
+  {
+    alert("Enter Valid Profession ");
+    return false;
+  }
+  else if(Mobilenum<999999999)
+  alert("Enter Valid Mobile Number");
+  else
+  {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (emailPattern.test(Email))
+    {
+     
+        document.forms["myform"].reset();
+        alert("Form Submitted");
+    }
+  else{
+      alert("You have entered an invalid email address!")
+      return (false)
+  }
+  }
+}
+</script>
+</body>
+</html>
